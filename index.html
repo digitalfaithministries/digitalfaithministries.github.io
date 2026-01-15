@@ -399,7 +399,16 @@
 
         /* Contact Section */
         .contact {
-            background: var(--warm-white);
+            background: linear-gradient(135deg, var(--ember-dark) 0%, #1A0A0A 100%);
+            color: var(--warm-white);
+        }
+
+        .contact .section-title {
+            color: var(--warm-white);
+        }
+
+        .contact .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .contact-wrapper {
@@ -417,12 +426,12 @@
 
         .contact-info h3 {
             font-size: 1.8rem;
-            color: var(--ember-dark);
+            color: var(--warm-white);
             margin-bottom: 1.5rem;
         }
 
         .contact-info p {
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 2rem;
             line-height: 1.8;
         }
@@ -432,32 +441,34 @@
             align-items: center;
             gap: 1rem;
             padding: 1.5rem;
-            background: var(--cream);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             margin-bottom: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .contact-email svg {
             width: 24px;
             height: 24px;
-            fill: var(--flame-orange);
+            fill: var(--flame-gold);
         }
 
         .contact-email a {
-            color: var(--ember-dark);
+            color: var(--warm-white);
             text-decoration: none;
             font-weight: 500;
             font-size: 1.1rem;
         }
 
         .contact-email a:hover {
-            color: var(--flame-orange);
+            color: var(--flame-gold);
         }
 
         .contact-form {
-            background: var(--cream);
+            background: rgba(255, 255, 255, 0.05);
             padding: 2.5rem;
             border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .form-group {
@@ -468,18 +479,19 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
-            color: var(--text-dark);
+            color: var(--warm-white);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 1rem 1.2rem;
-            border: 2px solid transparent;
+            border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
-            background: var(--warm-white);
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text-dark);
             transition: all 0.3s ease;
         }
 
@@ -487,7 +499,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--flame-orange);
-            box-shadow: 0 0 0 4px rgba(232, 93, 4, 0.1);
+            box-shadow: 0 0 0 4px rgba(232, 93, 4, 0.2);
         }
 
         .form-group textarea {
@@ -511,7 +523,7 @@
 
         .submit-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(232, 93, 4, 0.3);
+            box-shadow: 0 10px 30px rgba(232, 93, 4, 0.4);
         }
 
         /* Footer */
