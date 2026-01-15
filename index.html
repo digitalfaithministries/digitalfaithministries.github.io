@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Faith Ministries | Professional Video Production for Faith-Based Creators</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --flame-orange: #E85D04;
+            --flame-gold: #F48C06;
+            --flame-yellow: #FAA307;
+            --ember-dark: #370617;
+            --ember-deep: #6A040F;
+            --cream: #FFF8F0;
+            --warm-white: #FFFCF9;
+            --text-dark: #1A1A1A;
+            --text-muted: #4A4A4A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Elegant serif headings */
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--ember-dark) 0%, var(--ember-deep) 50%, #9D0208 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 70%, rgba(244, 140, 6, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 30%, rgba(232, 93, 4, 0.1) 0%, transparent 40%);
+            animation: flicker 8s ease-in-out infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        /* Floating ember particles */
+        .embers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .ember {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--flame-gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: rise 6s ease-in infinite;
+        }
+
+        .ember:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .ember:nth-child(2) { left: 25%; animation-delay: 1s; }
+        .ember:nth-child(3) { left: 40%; animation-delay: 2s; }
+        .ember:nth-child(4) { left: 55%; animation-delay: 0.5s; }
+        .ember:nth-child(5) { left: 70%; animation-delay: 1.5s; }
+        .ember:nth-child(6) { left: 85%; animation-delay: 2.5s; }
+
+        @keyframes rise {
+            0% { bottom: -10%; opacity: 0; transform: translateX(0); }
+            10% { opacity: 1; }
+            90% { opacity: 0.5; }
+            100% { bottom: 110%; opacity: 0; transform: translateX(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+        }
+
+        .logo-container {
+            margin-bottom: 2rem;
+        }
+
+        .logo-icon {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: drop-shadow(0 0 40px rgba(244, 140, 6, 0.5));
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 40px rgba(244, 140, 6, 0.5)); }
+            50% { filter: drop-shadow(0 0 60px rgba(244, 140, 6, 0.7)); }
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--warm-white);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: var(--flame-gold);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--flame-orange) 0%, var(--flame-gold) 100%);
+            color: var(--warm-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(232, 93, 4, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(232, 93, 4, 0.5);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--flame-gold);
+            opacity: 0.7;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--ember-dark);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Results Section */
+        .results {
+            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .result-card {
+            background: var(--warm-white);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(55, 6, 23, 0.08);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(244, 140, 6, 0.1);
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .result-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--flame-orange) 0%, var(--flame-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: var(--warm-white);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            position: relative;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--flame-orange) 0%, var(--flame-gold) 100%);
+            color: var(--warm-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 25px rgba(232, 93, 4, 0.3);
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            color: var(--ember-dark);
+            margin-bottom: 1rem;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* Services Section */
+        .services {
+            background: linear-gradient(135deg, var(--ember-dark) 0%, var(--ember-deep) 100%);
+            color: var(--warm-white);
+        }
+
+        .services .section-title {
+            color: var(--warm-white);
+        }
+
+        .services .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            padding: 1.5rem;
+            border-left: 3px solid var(--flame-gold);
+        }
+
+        .feature h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--flame-gold);
+        }
+
+        .feature p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .price-card {
+            background: var(--warm-white);
+            max-width: 500px;
+            margin: 3rem auto;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(55, 6, 23, 0.1);
+            border: 2px solid transparent;
+            background-image: linear-gradient(var(--warm-white), var(--warm-white)), 
+                              linear-gradient(135deg, var(--flame-orange), var(--flame-gold));
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+
+        .price-amount {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--ember-dark);
+        }
+
+        .price-period {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .price-features {
+            list-style: none;
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .price-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--flame-orange);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--warm-white);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        @media (max-width: 768px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--ember-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-email {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--cream);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .contact-email svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--flame-orange);
+        }
+
+        .contact-email a {
+            color: var(--ember-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .contact-email a:hover {
+            color: var(--flame-orange);
+        }
+
+        .contact-form {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            background: var(--warm-white);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--flame-orange);
+            box-shadow: 0 0 0 4px rgba(232, 93, 4, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--flame-orange) 0%, var(--flame-gold) 100%);
+            color: var(--warm-white);
+            border: none;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(232, 93, 4, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--ember-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Free Sample Banner */
+        .free-sample {
+            background: linear-gradient(135deg, var(--flame-gold) 0%, var(--flame-orange) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .free-sample h2 {
+            color: var(--warm-white);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .free-sample p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .free-sample .cta-button {
+            background: var(--warm-white);
+            color: var(--ember-dark);
+        }
+
+        .free-sample .cta-button:hover {
+            background: var(--cream);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .result-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .price-card {
+                padding: 2rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="embers">
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+            <div class="ember"></div>
+        </div>
+        <div class="hero-content">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <img src="logo.png" alt="Digital Faith Ministries - Burning Bush Logo">
+                </div>
+                <h1 class="brand-name">Digital Faith Ministries</h1>
+                <p class="tagline">Devotionals for the Busy Pastor</p>
+            </div>
+            <p class="hero-description">
+                We transform your audio devotionals into stunning videos with peaceful nature visuals — so you can focus on ministry while we handle production.
+            </p>
+            <a href="#contact" class="cta-button">Get Your Free Sample Video</a>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results" id="results">
+        <div class="container">
+            <h2 class="section-title">Proven Results</h2>
+            <p class="section-subtitle">Real growth achieved for a faith-based creator through our consistent, professional video production service.</p>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">363+</div>
+                    <div class="result-label">Subscribers Gained</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">28,819</div>
+                    <div class="result-label">Total Views</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">147</div>
+                    <div class="result-label">Videos Produced</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">A simple, hands-off process designed for busy ministry leaders.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Send Your Audio</h3>
+                    <p>Record your devotional message as you normally would. Send us the audio file — that's all you need to do.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We Create the Video</h3>
+                    <p>Our team adds beautiful nature visuals, peaceful backgrounds, and professional formatting to bring your message to life.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Published to Your Channel</h3>
+                    <p>We upload the finished video directly to your YouTube channel, optimised for discovery. Your audience grows while you sleep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">What's Included</h2>
+            <p class="section-subtitle">Everything you need to build a thriving devotional YouTube channel.</p>
+            <div class="service-features">
+                <div class="feature">
+                    <h4>Professional Video Production</h4>
+                    <p>Each audio devotional transformed with calming nature visuals and smooth transitions.</p>
+                </div>
+                <div class="feature">
+                    <h4>Unlimited Videos</h4>
+                    <p>Send as many devotionals as you want — we'll produce them all with the same quality.</p>
+                </div>
+                <div class="feature">
+                    <h4>YouTube Optimisation</h4>
+                    <p>Titles, descriptions, and tags crafted to help your content reach more people.</p>
+                </div>
+                <div class="feature">
+                    <h4>Direct Upload</h4>
+                    <p>We handle everything — you don't even need to log into YouTube.</p>
+                </div>
+                <div class="feature">
+                    <h4>Quick Turnaround</h4>
+                    <p>Videos produced and published within 48 hours of receiving your audio.</p>
+                </div>
+                <div class="feature">
+                    <h4>Dedicated Support</h4>
+                    <p>Direct communication with your production team for any requests or adjustments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">One flat rate for complete peace of mind.</p>
+            <div class="price-card">
+                <div class="price-amount">£100</div>
+                <div class="price-period">per month</div>
+                <ul class="price-features">
+                    <li>Unlimited video production</li>
+                    <li>Professional nature visuals</li>
+                    <li>YouTube optimisation & upload</li>
+                    <li>48-hour turnaround</li>
+                    <li>Direct channel management</li>
+                    <li>Cancel anytime — no contracts</li>
+                </ul>
+                <a href="#contact" class="cta-button">Start With a Free Sample</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Sample Banner -->
+    <section class="free-sample">
+        <h2>Try It Risk-Free</h2>
+        <p>Not sure if it's right for you? Send us one audio devotional and we'll create a professional video — completely free, no strings attached.</p>
+        <a href="#contact" class="cta-button">Request Your Free Sample</a>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Get Started</h2>
+            <p class="section-subtitle">Ready to transform your devotional content? Reach out today.</p>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Whether you're ready to start or just have questions, we'd love to hear from you. We typically respond within 24 hours.</p>
+                    <div class="contact-email">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <a href="/cdn-cgi/l/email-protection#85ecebe3eac5e1e3e8a8f6e0f7f3ece6e0f6abe6eae8"><span class="__cf_email__" data-cfemail="5a33343c351a3e3c3777293f282c33393f2974393537">[email&#160;protected]</span></a>
+                    </div>
+                </div>
+                <form class="contact-form" action="https://formspree.io/f/yourformid" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Pastor John Smith">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="john@yourchurch.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="channel">YouTube Channel (if you have one)</label>
+                        <input type="text" id="channel" name="channel" placeholder="youtube.com/@yourchannel">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your ministry and what you're looking for..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
