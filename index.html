@@ -45,6 +45,38 @@
             letter-spacing: -0.02em;
         }
 
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--flame-orange);
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        .nav a {
+            color: var(--warm-white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav a:hover {
+            opacity: 0.8;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -54,6 +86,7 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            padding-top: 60px;
         }
 
         .hero::before {
@@ -261,9 +294,73 @@
             font-weight: 500;
         }
 
+        /* Credentials Section */
+        .credentials {
+            background: linear-gradient(135deg, var(--ember-dark) 0%, var(--ember-deep) 100%);
+            color: var(--warm-white);
+        }
+
+        .credentials .section-title {
+            color: var(--warm-white);
+        }
+
+        .credentials .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .credentials-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(247, 166, 0, 0.05) 100%);
+            border-left: 5px solid var(--flame-gold);
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-radius: 20px;
+        }
+
+        .credentials-list {
+            list-style: none;
+        }
+
+        .credentials-list li {
+            padding: 0.8rem 0 0.8rem 2rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.7;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .credentials-list li:last-child {
+            border-bottom: none;
+        }
+
+        .credentials-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--flame-gold);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .credentials-list li strong {
+            color: var(--flame-gold);
+        }
+
+        .credentials-summary {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .credentials-summary strong {
+            color: var(--flame-gold);
+        }
+
         /* How It Works */
         .how-it-works {
-            background: var(--warm-white);
+            background: var(--cream);
         }
 
         .steps {
@@ -349,10 +446,15 @@
             text-align: center;
         }
 
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
         .price-card {
             background: var(--warm-white);
-            max-width: 500px;
-            margin: 3rem auto;
             padding: 3rem;
             border-radius: 30px;
             box-shadow: 0 20px 60px rgba(55, 6, 23, 0.1);
@@ -361,6 +463,18 @@
                               linear-gradient(135deg, var(--flame-orange), var(--flame-gold));
             background-origin: border-box;
             background-clip: padding-box, border-box;
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(55, 6, 23, 0.15);
+        }
+
+        .price-name {
+            font-size: 1.5rem;
+            color: var(--flame-orange);
+            margin-bottom: 1rem;
         }
 
         .price-amount {
@@ -395,6 +509,22 @@
             color: var(--flame-orange);
             font-weight: bold;
             font-size: 1.2rem;
+        }
+
+        .pricing-note {
+            margin-top: 3rem;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .pricing-note a {
+            color: var(--flame-orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .pricing-note a:hover {
+            text-decoration: underline;
         }
 
         /* Contact Section */
@@ -462,6 +592,12 @@
 
         .contact-email a:hover {
             color: var(--flame-gold);
+        }
+
+        .contact-response {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 1rem;
         }
 
         .contact-form {
@@ -588,10 +724,28 @@
             .contact-form {
                 padding: 1.5rem;
             }
+
+            .nav-container {
+                gap: 1.5rem;
+            }
+
+            .nav a {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#services">SERVICES</a>
+            <a href="#results">RESULTS</a>
+            <a href="#pricing">PRICING</a>
+            <a href="#contact">CONTACT</a>
+        </div>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="embers">
@@ -626,19 +780,47 @@
     <section class="results" id="results">
         <div class="container">
             <h2 class="section-title">Proven Results</h2>
-            <p class="section-subtitle">Real growth achieved for a faith-based creator through our consistent, professional video production service.</p>
+            <p class="section-subtitle">Real-world impact from a faith-based creator we've been working with.</p>
             <div class="results-grid">
                 <div class="result-card">
-                    <div class="result-number">363+</div>
-                    <div class="result-label">Subscribers Gained</div>
+                    <div class="result-number">363</div>
+                    <div class="result-label">Subscribers Reached</div>
                 </div>
                 <div class="result-card">
-                    <div class="result-number">28,819</div>
+                    <div class="result-number">28K+</div>
                     <div class="result-label">Total Views</div>
                 </div>
                 <div class="result-card">
                     <div class="result-number">147</div>
                     <div class="result-label">Videos Produced</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">10x</div>
+                    <div class="result-label">Faster Growth</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credentials Section -->
+    <section class="credentials" id="credentials">
+        <div class="container">
+            <h2 class="section-title">Our Expertise</h2>
+            <p class="section-subtitle">20+ Years in Faith-Based Broadcasting & Production</p>
+            <div class="credentials-box">
+                <ul class="credentials-list">
+                    <li><strong>BBC Radio 4</strong> — Broadcasting Assistant, professional radio production standards</li>
+                    <li><strong>Revelation TV</strong> — Television production internship, broadcast television experience</li>
+                    <li><strong>United Christian Broadcasters (UCB)</strong> — Content creation for UK Christian broadcasting network</li>
+                    <li><strong>Large Christian Organisation (UK)</strong> — 10+ years as Creative Director managing multi-platform media</li>
+                    <li>Television production, broadcast network management, and digital transformation</li>
+                    <li>Multi-platform content strategy (YouTube, TikTok, Facebook, LinkedIn) for faith-based audiences</li>
+                    <li>Built and scaled independent faith-based channels from scratch to thousands of subscribers</li>
+                    <li><strong>IN2GTV</strong> — Faith-based podcast channel creator (234 subs, 118 videos, 49K+ views)</li>
+                    <li><strong>Owari Kids</strong> — Children's content creator (3,020 subs, 261 videos, 1.25M+ views)</li>
+                </ul>
+                <div class="credentials-summary">
+                    <strong>This isn't a side hustle.</strong> We're broadcast television and radio veterans with two decades of faith media production experience. We understand both the technical excellence required by professional broadcasters and the spiritual depth that faith-based audiences deserve. We've worked with major UK Christian broadcasters. We've built channels from scratch. We know what converts viewers into engaged, committed communities. Your ministry's growth is built on genuine broadcast expertise and proven results.
                 </div>
             </div>
         </div>
@@ -672,32 +854,32 @@
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title">What's Included</h2>
+            <h2 class="section-title">What We Do</h2>
             <p class="section-subtitle">Everything you need to build a thriving devotional YouTube channel.</p>
             <div class="service-features">
                 <div class="feature">
-                    <h4>Professional Video Production</h4>
-                    <p>Each audio devotional transformed with calming nature visuals and smooth transitions.</p>
+                    <h4>Audio to Video</h4>
+                    <p>Send us your audio devotional, sermon, prayer, or message. We transform it into professional, engaging video content ready for YouTube and social platforms.</p>
                 </div>
                 <div class="feature">
-                    <h4>Flexible Packages</h4>
-                    <p>Starting at 4 videos per month, with custom packages available for ministries that need more.</p>
+                    <h4>Professional Production</h4>
+                    <p>Beautiful visuals, professional editing, and strategic optimization. Every video is crafted to maximize engagement and keep viewers watching until the end.</p>
+                </div>
+                <div class="feature">
+                    <h4>Consistent Growth</h4>
+                    <p>Maintain a regular upload schedule without the production burden. More videos. More reach. More impact for your ministry's message.</p>
                 </div>
                 <div class="feature">
                     <h4>YouTube Optimisation</h4>
-                    <p>Titles, descriptions, and tags crafted to help your content reach more people.</p>
-                </div>
-                <div class="feature">
-                    <h4>Direct Upload</h4>
-                    <p>We handle everything — you don't even need to log into YouTube.</p>
+                    <p>Titles, descriptions, and tags crafted to help your content reach more people searching for faith-based content.</p>
                 </div>
                 <div class="feature">
                     <h4>Quick Turnaround</h4>
-                    <p>Videos produced and published within 48 hours of receiving your audio.</p>
+                    <p>Videos produced and published within 48 hours of receiving your audio. Your message reaches your audience fast.</p>
                 </div>
                 <div class="feature">
                     <h4>Dedicated Support</h4>
-                    <p>Direct communication with your production team for any requests or adjustments.</p>
+                    <p>Direct communication with your production team for any requests or adjustments. We're here to serve your ministry.</p>
                 </div>
             </div>
         </div>
@@ -707,20 +889,40 @@
     <section class="pricing" id="pricing">
         <div class="container">
             <h2 class="section-title">Simple, Transparent Pricing</h2>
-            <p class="section-subtitle">One flat rate for complete peace of mind.</p>
-            <div class="price-card">
-                <div class="price-amount">From £99</div>
-                <div class="price-period">per month</div>
-                <ul class="price-features">
-                    <li>4 professional videos per month</li>
-                    <li>Need more? Custom packages available</li>
-                    <li>Professional visuals & formatting</li>
-                    <li>YouTube optimisation & upload</li>
-                    <li>48-hour turnaround</li>
-                    <li>Cancel anytime — no contracts</li>
-                </ul>
-                <a href="#contact" class="cta-button">Start With a Free Sample</a>
+            <p class="section-subtitle">Professional production at ministry-friendly rates.</p>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3 class="price-name">Starter Package</h3>
+                    <div class="price-amount">From £99</div>
+                    <div class="price-period">per month</div>
+                    <ul class="price-features">
+                        <li>4 professional videos per month</li>
+                        <li>Professional visual editing</li>
+                        <li>YouTube optimization & posting</li>
+                        <li>48-hour turnaround</li>
+                        <li>Monthly analytics report</li>
+                        <li>Email support</li>
+                        <li>Cancel anytime — no contracts</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Start Free Sample</a>
+                </div>
+                <div class="price-card">
+                    <h3 class="price-name">Growth Package</h3>
+                    <div class="price-amount">From £199</div>
+                    <div class="price-period">per month</div>
+                    <ul class="price-features">
+                        <li>Unlimited video uploads</li>
+                        <li>Advanced visual editing</li>
+                        <li>Multi-platform optimization</li>
+                        <li>24-hour turnaround</li>
+                        <li>Weekly growth analytics</li>
+                        <li>Priority email support</li>
+                        <li>Strategy consultation included</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">Start Free Sample</a>
+                </div>
             </div>
+            <p class="pricing-note">Need a custom package? We offer tailored solutions for larger ministries and organizations. <a href="#contact">Get in touch</a>.</p>
         </div>
     </section>
 
@@ -744,12 +946,13 @@
                         <svg viewBox="0 0 24 24">
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
-                        <a href="/cdn-cgi/l/email-protection#85ecebe3eac5e1e3e8a8f6e0f7f3ece6e0f6abe6eae8"><span class="__cf_email__" data-cfemail="5a33343c351a3e3c3777293f282c33393f2974393537">[email&#160;protected]</span></a>
+                        <a href="mailto:info@dfm-services.com">info@dfm-services.com</a>
                     </div>
+                    <p class="contact-response">We typically respond within 24 hours</p>
                 </div>
-                <form class="contact-form" action="https://formspree.io/f/yourformid" method="POST">
+                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                     <div class="form-group">
-                        <label for="name">Your Name</label>
+                        <label for="name">Your Name / Ministry Name</label>
                         <input type="text" id="name" name="name" required placeholder="Pastor John Smith">
                     </div>
                     <div class="form-group">
@@ -761,11 +964,18 @@
                         <input type="text" id="channel" name="channel" placeholder="youtube.com/@yourchannel">
                     </div>
                     <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" placeholder="Tell us about your ministry and what you're looking for..."></textarea>
+                        <label for="message">Tell Us About Your Ministry</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your content, your goals, and what you're looking for..." required></textarea>
                     </div>
                     <button type="submit" class="submit-button">Send Message</button>
                 </form>
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Digital Faith Ministries. All rights reserved.</p>
+    </footer>
+</body>
+</html>
