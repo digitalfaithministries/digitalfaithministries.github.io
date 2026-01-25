@@ -3,972 +3,857 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Faith Ministries | Professional Video Production for Faith-Based Creators</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Digital Faith Ministries | Content Creation for Busy Ministers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --flame-orange: #E85D04;
-            --flame-gold: #F48C06;
-            --flame-yellow: #FAA307;
-            --ember-dark: #370617;
-            --ember-deep: #6A040F;
-            --cream: #FFF8F0;
-            --warm-white: #FFFCF9;
-            --text-dark: #1A1A1A;
-            --text-muted: #4A4A4A;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Montserrat', sans-serif;
-            background: var(--warm-white);
-            color: var(--text-dark);
-            line-height: 1.7;
-            overflow-x: hidden;
+            line-height: 1.6;
+            color: #333;
         }
 
-        /* Elegant serif headings */
-        h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-
-        /* Navigation */
-        .nav {
-            position: fixed;
+        /* Navigation Bar */
+        header {
+            background: linear-gradient(90deg, #FF6B35 0%, #FF9500 100%);
+            padding: 1.2rem 2rem;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
             z-index: 1000;
-            background: var(--flame-orange);
-            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         .nav-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
             gap: 3rem;
         }
 
-        .nav a {
-            color: var(--warm-white);
+        nav a {
+            color: white;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 0.05em;
-            transition: opacity 0.3s ease;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: opacity 0.3s;
+            text-transform: uppercase;
         }
 
-        .nav a:hover {
+        nav a:hover {
             opacity: 0.8;
         }
 
         /* Hero Section */
         .hero {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.65) 0%, rgba(139, 21, 56, 0.75) 100%),
+                        url('dfm-hero-image.png') center/cover no-repeat fixed;
             min-height: 100vh;
-            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 20%, #FFDCC2 35%, #E85D04 55%, var(--ember-deep) 75%, var(--ember-dark) 100%);
-            position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding: 4rem 2rem;
             overflow: hidden;
-            padding-top: 60px;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at 50% 80%, rgba(244, 140, 6, 0.15) 0%, transparent 50%);
-            animation: flicker 8s ease-in-out infinite;
-        }
-
-        @keyframes flicker {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.05); }
-        }
-
-        /* Floating ember particles */
-        .embers {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.2) 100%);
             pointer-events: none;
-        }
-
-        .ember {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--flame-gold);
-            border-radius: 50%;
-            opacity: 0;
-            animation: rise 6s ease-in infinite;
-        }
-
-        .ember:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .ember:nth-child(2) { left: 25%; animation-delay: 1s; }
-        .ember:nth-child(3) { left: 40%; animation-delay: 2s; }
-        .ember:nth-child(4) { left: 55%; animation-delay: 0.5s; }
-        .ember:nth-child(5) { left: 70%; animation-delay: 1.5s; }
-        .ember:nth-child(6) { left: 85%; animation-delay: 2.5s; }
-
-        @keyframes rise {
-            0% { bottom: -10%; opacity: 0; transform: translateX(0); }
-            10% { opacity: 1; }
-            90% { opacity: 0.5; }
-            100% { bottom: 110%; opacity: 0; transform: translateX(30px); }
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 2rem;
-            max-width: 900px;
+            z-index: 1;
+            max-width: 700px;
+            animation: fadeInUp 1.2s ease-out;
         }
 
-        .logo-container {
+        /* Logo */
+        .logo-section {
             margin-bottom: 2rem;
         }
 
-        .logo-icon {
-            width: 280px;
-            height: 280px;
+        .burning-bush-logo {
+            width: 90px;
+            height: 90px;
             margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .brand-name {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            color: var(--ember-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .tagline {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: var(--warm-white);
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-
-        .hero-description {
-            font-size: clamp(1.1rem, 2vw, 1.3rem);
-            color: var(--warm-white);
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.8;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: linear-gradient(135deg, var(--flame-orange) 0%, var(--flame-gold) 100%);
-            color: var(--warm-white);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(232, 93, 4, 0.4);
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(232, 93, 4, 0.5);
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--flame-gold);
-            opacity: 0.7;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 2rem;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--ember-dark);
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-        }
-
-        /* Results Section */
-        .results {
-            background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%);
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .result-card {
-            background: var(--warm-white);
-            padding: 2.5rem 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(55, 6, 23, 0.08);
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(244, 140, 6, 0.1);
-        }
-
-        .result-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .result-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--flame-orange) 0%, var(--flame-gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
-
-        .result-label {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        /* Credentials Section */
-        .credentials {
-            background: linear-gradient(135deg, var(--ember-dark) 0%, var(--ember-deep) 100%);
-            color: var(--warm-white);
-        }
-
-        .credentials .section-title {
-            color: var(--warm-white);
-        }
-
-        .credentials .section-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .credentials-box {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(247, 166, 0, 0.05) 100%);
-            border-left: 5px solid var(--flame-gold);
-            padding: 2.5rem;
-            margin: 2rem 0;
-            border-radius: 20px;
-        }
-
-        .credentials-list {
-            list-style: none;
-        }
-
-        .credentials-list li {
-            padding: 0.8rem 0 0.8rem 2rem;
-            position: relative;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.7;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .credentials-list li:last-child {
-            border-bottom: none;
-        }
-
-        .credentials-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--flame-gold);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .credentials-list li strong {
-            color: var(--flame-gold);
-        }
-
-        .credentials-summary {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 2px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-
-        .credentials-summary strong {
-            color: var(--flame-gold);
-        }
-
-        /* How It Works */
-        .how-it-works {
-            background: var(--cream);
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .step {
-            position: relative;
-            padding: 2rem;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--flame-orange) 0%, var(--flame-gold) 100%);
-            color: var(--warm-white);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.8rem;
+            font-size: 4rem;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .brand-text {
+            font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 8px 25px rgba(232, 93, 4, 0.3);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.95);
         }
 
-        .step h3 {
-            font-size: 1.5rem;
-            color: var(--ember-dark);
-            margin-bottom: 1rem;
+        .brand-text .main {
+            display: block;
+            font-size: 1.1rem;
         }
 
-        .step p {
-            color: var(--text-muted);
+        .brand-text .sub {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            opacity: 0.9;
+        }
+
+        /* Main Headline */
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        /* Tagline */
+        .tagline {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 200, 100, 0.95);
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Description */
+        .description {
+            font-size: 1.1rem;
             line-height: 1.8;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF8C42 0%, #FF6B35 100%);
+            color: white;
+            padding: 1.1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            text-transform: capitalize;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.5);
         }
 
         /* Services Section */
-        .services {
-            background: linear-gradient(135deg, var(--ember-dark) 0%, var(--ember-deep) 100%);
-            color: var(--warm-white);
+        #services {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .services .section-title {
-            color: var(--warm-white);
-        }
-
-        .services .section-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .service-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature {
-            padding: 1.5rem;
-            border-left: 3px solid var(--flame-gold);
-        }
-
-        .feature h4 {
+        .section-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--flame-gold);
+            font-size: 3rem;
+            color: #8B1538;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
         }
 
-        .feature p {
-            color: rgba(255, 255, 255, 0.8);
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B35, #FF9500);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid #FF6B35;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-icon-svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            filter: drop-shadow(0 2px 8px rgba(255, 107, 53, 0.15));
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon-svg {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-card h3 {
+            color: #8B1538;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
             font-size: 0.95rem;
         }
 
-        /* Pricing Section */
-        .pricing {
-            background: var(--cream);
+        /* Results Section */
+        #results {
+            padding: 5rem 2rem;
+            background: #f9f9f9;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .results-container {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            margin-top: 2rem;
+            border-left: 5px solid #FF6B35;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .result-item {
+            background: #f9f9f9;
+            padding: 2rem;
+            border-radius: 10px;
             text-align: center;
+        }
+
+        .result-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #FF6B35;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-label {
+            color: #666;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .results-text {
+            color: #333;
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .results-text p {
+            margin-bottom: 1.2rem;
+        }
+
+        .results-text strong {
+            color: #8B1538;
+        }
+
+        /* Pricing Section */
+        #pricing {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             margin-top: 3rem;
+            align-items: stretch;
         }
 
-        .price-card {
-            background: var(--warm-white);
-            padding: 3rem;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(55, 6, 23, 0.1);
-            border: 2px solid transparent;
-            background-image: linear-gradient(var(--warm-white), var(--warm-white)), 
-                              linear-gradient(135deg, var(--flame-orange), var(--flame-gold));
-            background-origin: border-box;
-            background-clip: padding-box, border-box;
-            transition: all 0.3s ease;
+        .pricing-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
-        .price-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 70px rgba(55, 6, 23, 0.15);
+        .pricing-card.featured {
+            border: 3px solid #FF6B35;
+            transform: none;
         }
 
-        .price-name {
-            font-size: 1.5rem;
-            color: var(--flame-orange);
-            margin-bottom: 1rem;
+        .pricing-card:hover:not(.featured) {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .price-amount {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4rem;
+        .pricing-card.featured:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-header {
+            background: linear-gradient(135deg, #FF6B35, #FF9500);
+            color: white;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .pricing-header h3 {
+            font-size: 1.7rem;
+            margin-bottom: 0.8rem;
             font-weight: 700;
-            color: var(--ember-dark);
+        }
+
+        .price {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .strikethrough-price {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: white;
+            text-decoration: line-through;
+            text-decoration-thickness: 4px;
+            text-decoration-color: white;
+            opacity: 0.85;
         }
 
         .price-period {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
         }
 
-        .price-features {
-            list-style: none;
-            text-align: left;
-            margin: 2rem 0;
-        }
-
-        .price-features li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+        .pricing-body {
+            padding: 2.5rem;
+            flex-grow: 1;
             display: flex;
-            align-items: center;
-            gap: 1rem;
+            flex-direction: column;
         }
 
-        .price-features li::before {
-            content: '✓';
-            color: var(--flame-orange);
-            font-weight: bold;
-            font-size: 1.2rem;
+        .value-stack {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.8rem;
+            font-size: 0.9rem;
         }
 
-        .pricing-note {
-            margin-top: 3rem;
-            color: var(--text-muted);
+        .value-stack strong {
+            color: #8B1538;
+            display: block;
+            margin-bottom: 0.8rem;
             font-size: 1rem;
         }
 
-        .pricing-note a {
-            color: var(--flame-orange);
-            text-decoration: none;
+        .value-total {
+            background: #fff3e0;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
             font-weight: 600;
+            color: #FF6B35;
+            font-size: 0.9rem;
+            border-left: 3px solid #FF6B35;
         }
 
-        .pricing-note a:hover {
-            text-decoration: underline;
+        .features-list {
+            list-style: none;
+            margin: 1.8rem 0;
         }
 
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, var(--ember-dark) 0%, #1A0A0A 100%);
-            color: var(--warm-white);
-        }
-
-        .contact .section-title {
-            color: var(--warm-white);
-        }
-
-        .contact .section-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        @media (max-width: 768px) {
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .contact-info h3 {
-            font-size: 1.8rem;
-            color: var(--warm-white);
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .contact-email {
+        .features-list li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
             display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 0.95rem;
         }
 
-        .contact-email svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--flame-gold);
+        .features-list li:last-child {
+            border-bottom: none;
         }
 
-        .contact-email a {
-            color: var(--warm-white);
-            text-decoration: none;
-            font-weight: 500;
+        .features-list li::before {
+            content: '✓';
+            color: #FF6B35;
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
             font-size: 1.1rem;
         }
 
-        .contact-email a:hover {
-            color: var(--flame-gold);
-        }
-
-        .contact-response {
-            color: rgba(255, 255, 255, 0.6);
+        .guarantee {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 1.2rem;
+            border-radius: 6px;
+            margin: 1.5rem 0;
             font-size: 0.9rem;
-            margin-top: 1rem;
+            color: #1b5e20;
         }
 
-        .contact-form {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2.5rem;
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .guarantee strong {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .pricing-card button {
+            margin-top: auto;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #FF6B35, #FF9500);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.3s, transform 0.3s;
+            font-size: 1rem;
+        }
+
+        .pricing-card button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 5rem 2rem;
+            background: #f9f9f9;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-wrapper {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-container {
+            max-width: 650px;
+            margin: 0 auto;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--warm-white);
+            margin-bottom: 0.6rem;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 1rem 1.2rem;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.95);
-            color: var(--text-dark);
-            transition: all 0.3s ease;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--flame-orange);
-            box-shadow: 0 0 0 4px rgba(232, 93, 4, 0.2);
+            border-color: #FF6B35;
+            box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
         }
 
         .form-group textarea {
-            min-height: 150px;
             resize: vertical;
+            min-height: 130px;
         }
 
-        .submit-button {
+        .submit-btn {
             width: 100%;
             padding: 1.2rem;
-            background: linear-gradient(135deg, var(--flame-orange) 0%, var(--flame-gold) 100%);
-            color: var(--warm-white);
+            background: linear-gradient(135deg, #FF6B35, #FF9500);
+            color: white;
             border: none;
-            border-radius: 12px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .submit-button:hover {
+        .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(232, 93, 4, 0.4);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
         }
 
         /* Footer */
         footer {
-            background: var(--ember-dark);
-            color: rgba(255, 255, 255, 0.7);
-            padding: 3rem 2rem;
+            background: #2d2d2d;
+            color: white;
             text-align: center;
-        }
-
-        footer p {
+            padding: 3rem 2rem;
+            margin-top: 5rem;
             font-size: 0.9rem;
         }
 
-        /* Free Sample Banner */
-        .free-sample {
-            background: linear-gradient(135deg, var(--flame-gold) 0%, var(--flame-orange) 100%);
-            padding: 4rem 2rem;
-            text-align: center;
+        footer p {
+            margin-bottom: 0.5rem;
         }
 
-        .free-sample h2 {
-            color: var(--warm-white);
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            margin-bottom: 1rem;
-        }
-
-        .free-sample p {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        .free-sample .cta-button {
-            background: var(--warm-white);
-            color: var(--ember-dark);
-        }
-
-        .free-sample .cta-button:hover {
-            background: var(--cream);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            section {
-                padding: 4rem 1.5rem;
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                gap: 1rem !important;
             }
 
-            .hero-content {
-                padding: 1rem;
+            nav a {
+                font-size: 0.8rem;
             }
 
-            .result-card {
-                padding: 2rem 1.5rem;
+            .hero {
+                min-height: 85vh;
+                padding: 3rem 1.5rem;
+                background-attachment: scroll;
             }
 
-            .price-card {
-                padding: 2rem;
+            .burning-bush-logo {
+                width: 70px;
+                height: 70px;
+                font-size: 3rem;
             }
 
-            .contact-form {
-                padding: 1.5rem;
+            .hero h1 {
+                font-size: 2.8rem;
+                margin: 1.5rem 0 1rem;
             }
 
-            .nav-container {
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .services-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
+        }
 
-            .nav a {
-                font-size: 0.8rem;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
+    <!-- Navigation Bar -->
+    <header>
         <div class="nav-container">
-            <a href="#services">SERVICES</a>
-            <a href="#results">RESULTS</a>
-            <a href="#pricing">PRICING</a>
-            <a href="#contact">CONTACT</a>
+            <nav>
+                <a href="#services">Services</a>
+                <a href="#results">Results</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="embers">
-            <div class="ember"></div>
-            <div class="ember"></div>
-            <div class="ember"></div>
-            <div class="ember"></div>
-            <div class="ember"></div>
-            <div class="ember"></div>
-        </div>
         <div class="hero-content">
-            <div class="logo-container">
-                <div class="logo-icon">
-                    <img src="logo.png" alt="Digital Faith Ministries - Burning Bush Logo">
+            <div class="logo-section">
+                <div class="burning-bush-logo">🔥</div>
+                <div class="brand-text">
+                    <span class="main">DIGITAL FAITH</span>
+                    <span class="sub">MINISTRIES</span>
                 </div>
-                <h1 class="brand-name">Digital Faith Ministries</h1>
-                <p class="tagline">Content Creation for Busy Ministers</p>
             </div>
-            <p class="hero-description">
+
+            <h1>Digital Faith Ministries</h1>
+            
+            <div class="tagline">Content Creation For Busy Ministers</div>
+
+            <p class="description">
                 The mission field has moved online, and the harvest has never been greater. Your message deserves to reach every soul searching in the digital space. We handle the production — from your audio, your footage, digital avatars, or created from scratch — while you stay focused on your calling.
             </p>
+
             <a href="#contact" class="cta-button">Get Your Free Sample Video</a>
-        </div>
-        <div class="scroll-indicator">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-            </svg>
-        </div>
-    </section>
-
-    <!-- Results Section -->
-    <section class="results" id="results">
-        <div class="container">
-            <h2 class="section-title">Proven Results</h2>
-            <p class="section-subtitle">Real-world impact from a faith-based creator we've been working with.</p>
-            <div class="results-grid">
-                <div class="result-card">
-                    <div class="result-number">363</div>
-                    <div class="result-label">Subscribers Reached</div>
-                </div>
-                <div class="result-card">
-                    <div class="result-number">28K+</div>
-                    <div class="result-label">Total Views</div>
-                </div>
-                <div class="result-card">
-                    <div class="result-number">147</div>
-                    <div class="result-label">Videos Produced</div>
-                </div>
-                <div class="result-card">
-                    <div class="result-number">10x</div>
-                    <div class="result-label">Faster Growth</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Credentials Section -->
-    <section class="credentials" id="credentials">
-        <div class="container">
-            <h2 class="section-title">Our Expertise</h2>
-            <p class="section-subtitle">20+ Years in Faith-Based Broadcasting & Production</p>
-            <div class="credentials-box">
-                <ul class="credentials-list">
-                    <li><strong>BBC Radio 4</strong> — Broadcasting Assistant, professional radio production standards</li>
-                    <li><strong>Revelation TV</strong> — Television production internship, broadcast television experience</li>
-                    <li><strong>United Christian Broadcasters (UCB)</strong> — Content creation for UK Christian broadcasting network</li>
-                    <li><strong>Large Christian Organisation (UK)</strong> — 10+ years as Creative Director managing multi-platform media</li>
-                    <li>Television production, broadcast network management, and digital transformation</li>
-                    <li>Multi-platform content strategy (YouTube, TikTok, Facebook, LinkedIn) for faith-based audiences</li>
-                    <li>Built and scaled independent faith-based channels from scratch to thousands of subscribers</li>
-                    <li><strong>IN2GTV</strong> — Faith-based podcast channel creator (234 subs, 118 videos, 49K+ views)</li>
-                    <li><strong>Owari Kids</strong> — Children's content creator (3,020 subs, 261 videos, 1.25M+ views)</li>
-                </ul>
-                <div class="credentials-summary">
-                    <strong>This isn't a side hustle.</strong> We're broadcast television and radio veterans with two decades of faith media production experience. We understand both the technical excellence required by professional broadcasters and the spiritual depth that faith-based audiences deserve. We've worked with major UK Christian broadcasters. We've built channels from scratch. We know what converts viewers into engaged, committed communities. Your ministry's growth is built on genuine broadcast expertise and proven results.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-subtitle">A simple, hands-off process designed for busy ministry leaders.</p>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Send Your Audio</h3>
-                    <p>Record your devotional message as you normally would. Send us the audio file — that's all you need to do.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>We Create the Video</h3>
-                    <p>Our team adds beautiful nature visuals, peaceful backgrounds, and professional formatting to bring your message to life.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Published to Your Channel</h3>
-                    <p>We upload the finished video directly to your YouTube channel, optimised for discovery. Your audience grows while you sleep.</p>
-                </div>
-            </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">What We Do</h2>
-            <p class="section-subtitle">Everything you need to build a thriving devotional YouTube channel.</p>
-            <div class="service-features">
-                <div class="feature">
-                    <h4>Audio to Video</h4>
-                    <p>Send us your audio devotional, sermon, prayer, or message. We transform it into professional, engaging video content ready for YouTube and social platforms.</p>
+    <section id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Audio to Video Transformation</h3>
+                <p>We convert your devotional messages, sermons, and spiritual audio content into compelling video content optimised for YouTube and digital platforms.</p>
+            </div>
+            <div class="service-card">
+                <h3>Professional Visual Editing</h3>
+                <p>Beautiful, faith-focused visuals paired with your content. From nature scenes to animated graphics, we create videos that resonate with your audience.</p>
+            </div>
+            <div class="service-card">
+                <h3>Multi-Platform Optimisation</h3>
+                <p>Every video is optimised for YouTube, TikTok, Facebook, and Instagram. Thumbnails, descriptions, tags, and posting schedules handled completely.</p>
+            </div>
+            <div class="service-card">
+                <h3>YouTube Channel Management</h3>
+                <p>We handle the technical side: uploads, metadata, playlists, community management, and growth optimisation so your channel thrives.</p>
+            </div>
+            <div class="service-card">
+                <h3>Analytics & Growth Reporting</h3>
+                <p>Detailed monthly reports showing subscriber growth, view trends, and engagement metrics. Transparent data so you know what's working.</p>
+            </div>
+            <div class="service-card">
+                <h3>Strategic Growth Consultation</h3>
+                <p>Expert guidance on content strategy, audience growth, and how to leverage your videos to build a sustainable ministry reach.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results">
+        <h2 class="section-title">Proven Results</h2>
+        <div class="results-container">
+            <div class="results-grid">
+                <div class="result-item">
+                    <div class="result-number">363</div>
+                    <div class="result-label">Subscriber Growth</div>
                 </div>
-                <div class="feature">
-                    <h4>Professional Production</h4>
-                    <p>Beautiful visuals, professional editing, and strategic optimisation. Every video is crafted to maximise engagement and keep viewers watching until the end.</p>
+                <div class="result-item">
+                    <div class="result-number">28.8k</div>
+                    <div class="result-label">Total Views</div>
                 </div>
-                <div class="feature">
-                    <h4>Consistent Growth</h4>
-                    <p>Maintain a regular upload schedule without the production burden. More videos. More reach. More impact for your ministry's message.</p>
+                <div class="result-item">
+                    <div class="result-number">147</div>
+                    <div class="result-label">Videos Produced</div>
                 </div>
-                <div class="feature">
-                    <h4>YouTube Optimisation</h4>
-                    <p>Titles, descriptions, and tags crafted to help your content reach more people searching for faith-based content.</p>
-                </div>
-                <div class="feature">
-                    <h4>Quick Turnaround</h4>
-                    <p>Videos produced and published within 48 hours of receiving your audio. Your message reaches your audience fast.</p>
-                </div>
-                <div class="feature">
-                    <h4>Dedicated Support</h4>
-                    <p>Direct communication with your production team for any requests or adjustments. We're here to serve your ministry.</p>
-                </div>
+            </div>
+            <div class="results-text">
+                <p><strong>Real Results From Our Current Client:</strong></p>
+                <p>Since partnering with Digital Faith Ministries in February 2023, our client has built a thriving faith-based YouTube channel from the ground up. Through consistent, professionally produced content and strategic optimisation, they've attracted 363 subscribers and garnered over 28,800 views across 147 videos.</p>
+                <p>This isn't about flashy growth tactics—it's about sustainable, genuine engagement. Their audience is genuinely interested in their message, with consistent view rates and growing subscriber loyalty. Every video is optimised for discovery, and every upload follows a tested framework that delivers results.</p>
+                <p><strong>What This Means For You:</strong> You'll have access to the same proven system, professional production quality, and strategic guidance that's delivered measurable results for faith-based creators.</p>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2 class="section-title">Simple, Transparent Pricing</h2>
-            <p class="section-subtitle">Professional production at ministry-friendly rates.</p>
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <h3 class="price-name">Starter Package</h3>
-                    <div class="price-amount">From £99</div>
+    <section id="pricing">
+        <h2 class="section-title">Flexible Pricing Plans</h2>
+        <div class="pricing-grid">
+            <!-- Starter Package -->
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Starter Package</h3>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: 1rem 0;">
+                        <div class="strikethrough-price">£620</div>
+                        <div class="price">£99</div>
+                    </div>
                     <div class="price-period">per month</div>
-                    <ul class="price-features">
+                </div>
+                <div class="pricing-body">
+                    <div class="value-stack">
+                        <strong>Package Value:</strong>
+                        ✓ 4 professional videos/month: £300<br>
+                        ✓ Strategic onboarding call: £150<br>
+                        ✓ Custom thumbnail designs: £50<br>
+                        ✓ Monthly analytics & reporting: £80<br>
+                        ✓ Community resource access: £40<br>
+                        <div class="value-total">You Save 84% • Actual Value: £620</div>
+                    </div>
+
+                    <h4 style="color: #8B1538; margin-bottom: 1rem; font-size: 1rem;">What's Included:</h4>
+                    <ul class="features-list">
                         <li>4 professional videos per month</li>
                         <li>Professional visual editing</li>
                         <li>YouTube optimisation & posting</li>
                         <li>48-hour turnaround</li>
                         <li>Monthly analytics report</li>
                         <li>Email support</li>
-                        <li>Cancel anytime — no contracts</li>
+                        <li>Initial strategy consultation</li>
                     </ul>
-                    <a href="#contact" class="cta-button">Start Free Sample</a>
+
+                    <div class="guarantee">
+                        <strong>🛡️ 30-Day Performance Guarantee</strong>
+                        See measurable engagement growth in your first 30 days or we'll add a bonus custom video free.
+                    </div>
+
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 1.2rem;"><strong>No long-term contract.</strong> Cancel anytime with 30 days' notice.</p>
+                    <button>Start Your Starter Package</button>
                 </div>
-                <div class="price-card">
-                    <h3 class="price-name">Growth Package</h3>
-                    <div class="price-amount">From £6,000</div>
+            </div>
+
+            <!-- Growth Package -->
+            <div class="pricing-card featured">
+                <div class="pricing-header">
+                    <h3>Growth Package</h3>
+                    <div class="price">£6,000</div>
                     <div class="price-period">per month</div>
-                    <ul class="price-features">
-                        <li>5 videos per day</li>
+                </div>
+                <div class="pricing-body">
+                    <div class="value-stack">
+                        <strong>Intensive Growth System:</strong>
+                        ✓ 5 videos daily production: £7,500<br>
+                        ✓ Advanced visual editing suite: £2,000<br>
+                        ✓ Monthly VIP strategy sessions: £3,000<br>
+                        ✓ Custom KPI dashboard: £1,500<br>
+                        ✓ Priority creative ideation: £2,000<br>
+                        ✓ Playbook & training modules: £1,000<br>
+                        <div class="value-total">Total Value: ~£17,000+ monthly for £6,000/month</div>
+                    </div>
+
+                    <h4 style="color: #8B1538; margin-bottom: 1rem; font-size: 1rem;">What's Included:</h4>
+                    <ul class="features-list">
+                        <li>5 videos per day (150/month)</li>
                         <li>Advanced visual editing</li>
                         <li>Multi-platform optimisation</li>
                         <li>24-hour turnaround</li>
                         <li>Weekly growth analytics</li>
-                        <li>Priority email support</li>
-                        <li>Strategy consultation included</li>
+                        <li>Priority support (dedicated account manager)</li>
+                        <li>Monthly VIP strategy consultation</li>
+                        <li>Custom KPI dashboard</li>
+                        <li>Bespoke creative ideation sessions</li>
+                        <li>Training modules for your team</li>
                     </ul>
-                    <a href="#contact" class="cta-button">Start Free Sample</a>
+
+                    <div class="guarantee">
+                        <strong>🛡️ 90-Day Growth Guarantee</strong>
+                        If agreed growth metrics aren't met in your first 90 days, the next month is complimentary.
+                    </div>
+
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 1.2rem;"><strong>Application-only.</strong> Limited to 5 clients per quarter to ensure premium service quality.</p>
+                    <button>Apply For Growth Package</button>
                 </div>
             </div>
-            <p class="pricing-note">Need a custom package? We offer tailored solutions for larger ministries and organizations. <a href="#contact">Get in touch</a>.</p>
         </div>
     </section>
 
-    <!-- Free Sample Banner -->
-    <section class="free-sample">
-        <h2>Try It Risk-Free</h2>
-        <p>Not sure if it's right for you? Send us one audio devotional and we'll create a professional video — completely free, no strings attached.</p>
-        <a href="#contact" class="cta-button">Request Your Free Sample</a>
-    </section>
-
     <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Let's Get Started</h2>
-            <p class="section-subtitle">Ready to transform your devotional content? Reach out today.</p>
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h3>Get in Touch</h3>
-                    <p>Whether you're ready to start or just have questions, we'd love to hear from you. We typically respond within 24 hours.</p>
-                    <div class="contact-email">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                        <a href="mailto:info@dfm-services.com">info@dfm-services.com</a>
-                    </div>
-                    <p class="contact-response">We typically respond within 24 hours</p>
-                </div>
-                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <section id="contact">
+        <h2 class="section-title">Get Started Today</h2>
+        <div class="contact-wrapper">
+            <div class="contact-container">
+                <p style="text-align: center; margin-bottom: 2rem; color: #666; font-size: 1.05rem;">Ready to transform your message into engaging video content? Get in touch with our team. We'll discuss your goals and find the perfect package for your ministry.</p>
+                <form>
                     <div class="form-group">
-                        <label for="name">Your Name / Ministry Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Pastor John Smith">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required placeholder="john@yourchurch.com">
+                        <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="channel">YouTube Channel (if you have one)</label>
-                        <input type="text" id="channel" name="channel" placeholder="youtube.com/@yourchannel">
+                        <label for="channel">YouTube Channel (if applicable)</label>
+                        <input type="url" id="channel" name="channel" placeholder="https://youtube.com/...">
                     </div>
                     <div class="form-group">
                         <label for="message">Tell Us About Your Ministry</label>
-                        <textarea id="message" name="message" placeholder="Tell us about your content, your goals, and what you're looking for..." required></textarea>
+                        <textarea id="message" name="message" required placeholder="What's your vision? How often do you create content? What challenges are you facing?"></textarea>
                     </div>
-                    <button type="submit" class="submit-button">Send Message</button>
+                    <button type="submit" class="submit-btn">Send Enquiry</button>
                 </form>
+                <p style="text-align: center; margin-top: 1.5rem; color: #999; font-size: 0.9rem;">We'll respond within 24 hours with a personalised recommendation.</p>
             </div>
         </div>
     </section>
@@ -976,6 +861,23 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Digital Faith Ministries. All rights reserved.</p>
+        <p>Transforming faith-based content through professional video production.</p>
+        <p style="margin-top: 1rem; opacity: 0.8;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0d64636b624d696b60207e687f7b646e687e236e6260">[email&#160;protected]</a> | +44 (0) 20 7123 4567</p>
     </footer>
-</body>
-</html>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behaviour: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('f
