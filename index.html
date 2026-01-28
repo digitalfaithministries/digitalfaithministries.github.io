@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Faith Ministries | Content Creation for Busy Ministers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,19 +13,22 @@
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #2d2d2d;
+            background: #fafafa;
         }
 
         /* Navigation Bar */
         header {
-            background: linear-gradient(90deg, #FF6B35 0%, #FF9500 100%);
-            padding: 1.2rem 2rem;
+            background: white;
+            padding: 1.5rem 2rem;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid #f0f0f0;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .nav-container {
@@ -33,27 +36,40 @@
             margin: 0 auto;
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 4rem;
         }
 
         nav a {
-            color: white;
+            color: #2d2d2d;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 500;
             font-size: 0.95rem;
-            letter-spacing: 1px;
-            transition: opacity 0.3s;
-            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
         }
 
         nav a:hover {
-            opacity: 0.8;
+            color: #FF6B35;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FF6B35;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(255, 107, 53, 0.55) 0%, rgba(139, 21, 56, 0.65) 100%),
-                        radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 25%),
+            background: linear-gradient(135deg, rgba(250, 250, 250, 0.85) 0%, rgba(245, 245, 245, 0.85) 100%),
                         url('dfm-hero-image.png') center/cover no-repeat fixed;
             min-height: 100vh;
             display: flex;
@@ -61,173 +77,124 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
-            position: relative;
             padding: 4rem 2rem;
+            position: relative;
             overflow: hidden;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.15) 100%);
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(139, 21, 56, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
             pointer-events: none;
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 700px;
-            animation: fadeInUp 1.2s ease-out;
-        }
-
-        /* Logo */
-        .logo-section {
-            margin-bottom: 2rem;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
         }
 
         .logo-image {
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 1.5rem;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 2rem;
             display: block;
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
-            background: none;
-            padding: 0;
-            border-radius: 0;
-            mix-blend-mode: lighten;
-            image-rendering: crisp-edges;
         }
 
-        .burning-bush-logo {
-            width: auto;
-            height: auto;
-            margin: 0 auto 1.5rem;
-            background: none;
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            backdrop-filter: none;
-            border: none;
-        }
-
-        .burning-bush-svg {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 1.5rem;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            filter: drop-shadow(0 2px 8px rgba(255, 107, 53, 0.15));
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover .service-icon-svg {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .brand-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgba(45, 45, 45, 0.95);
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-        }
-
-        .brand-text .main {
-            display: block;
-            font-size: 1.1rem;
-        }
-
-        .brand-text .sub {
-            display: block;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            opacity: 0.85;
-        }
-
-        /* Main Headline */
         .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
             font-weight: 700;
-            margin: 2rem 0 1rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            margin-bottom: 1rem;
             line-height: 1.1;
-            letter-spacing: -1px;
+            color: #2d2d2d;
         }
 
-        /* Tagline */
-        .tagline {
-            font-family: 'Montserrat', sans-serif;
+        .hero .tagline {
             font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgba(255, 200, 100, 0.95);
+            color: #FF6B35;
+            font-weight: 600;
             margin-bottom: 2rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
         }
 
-        /* Description */
-        .description {
+        .hero p {
             font-size: 1.1rem;
-            line-height: 1.8;
+            color: #666;
             margin-bottom: 2.5rem;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            color: rgba(255, 255, 255, 0.95);
-            font-weight: 400;
+            line-height: 1.8;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* CTA Button */
         .cta-button {
             display: inline-block;
-            background: linear-gradient(135deg, #FF8C42 0%, #FF6B35 100%);
+            background: #FF6B35;
             color: white;
-            padding: 1.1rem 2.5rem;
+            padding: 1.2rem 3rem;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
+            transition: all 0.3s ease;
+            border: 2px solid #FF6B35;
             cursor: pointer;
-            text-transform: capitalize;
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            margin: 0.5rem;
         }
 
         .cta-button:hover {
+            background: transparent;
+            color: #FF6B35;
             transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(255, 107, 53, 0.5);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
         }
 
-        /* Services Section */
-        #services {
-            padding: 5rem 2rem;
+        .cta-button.secondary {
+            background: transparent;
+            color: #FF6B35;
+            border: 2px solid #FF6B35;
+        }
+
+        .cta-button.secondary:hover {
+            background: #FF6B35;
+            color: white;
+        }
+
+        /* Main Sections */
+        section {
+            padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .section-title {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif;
             font-size: 3rem;
-            color: #8B1538;
+            color: #2d2d2d;
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
-            padding-bottom: 1rem;
+            padding-bottom: 1.5rem;
         }
 
         .section-title::after {
@@ -236,56 +203,62 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #FF6B35, #FF9500);
+            width: 60px;
+            height: 3px;
+            background: #FF6B35;
             border-radius: 2px;
+        }
+
+        /* Services Section */
+        #services {
+            background: white;
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
         .service-card {
             background: white;
             padding: 2.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 5px solid #FF6B35;
+            border-radius: 12px;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.2rem;
-        }
-
-        .service-icon-svg {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 1.5rem;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            filter: drop-shadow(0 2px 8px rgba(255, 107, 53, 0.15));
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #FF6B35;
+            transform: scaleX(0);
+            transform-origin: left;
             transition: transform 0.3s ease;
         }
 
-        .service-card:hover .service-icon-svg {
-            transform: scale(1.1) rotate(5deg);
+        .service-card:hover {
+            border-color: #FF6B35;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-card h3 {
-            color: #8B1538;
+            color: #2d2d2d;
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
         }
 
         .service-card p {
@@ -296,37 +269,33 @@
 
         /* Results Section */
         #results {
-            padding: 5rem 2rem;
-            background: #f9f9f9;
-            max-width: 1200px;
-            margin: 0 auto;
+            background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
         }
 
         .results-container {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 3rem;
             margin-top: 2rem;
-            border-left: 5px solid #FF6B35;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #f0f0f0;
         }
 
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             margin-bottom: 2.5rem;
         }
 
         .result-item {
-            background: #f9f9f9;
+            background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 12px;
             text-align: center;
         }
 
         .result-number {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: #FF6B35;
             margin-bottom: 0.5rem;
@@ -334,7 +303,7 @@
 
         .result-label {
             color: #666;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
         }
 
@@ -349,81 +318,83 @@
         }
 
         .results-text strong {
-            color: #8B1538;
+            color: #FF6B35;
         }
 
         /* Pricing Section */
         #pricing {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            background: white;
         }
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 3rem;
             margin-top: 3rem;
-            align-items: stretch;
         }
 
         .pricing-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
-            height: 100%;
+            position: relative;
         }
 
         .pricing-card.featured {
-            border: 3px solid #FF6B35;
+            border: 2px solid #FF6B35;
             transform: none;
         }
 
-        .pricing-card:hover:not(.featured) {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .pricing-card.featured:hover {
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        .pricing-card:hover {
+            border-color: #FF6B35;
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.15);
+            transform: translateY(-10px);
         }
 
         .pricing-header {
-            background: linear-gradient(135deg, #FF6B35, #FF9500);
+            background: linear-gradient(135deg, #FF6B35 0%, #FF9500 100%);
             color: white;
-            padding: 2.5rem;
+            padding: 3rem 2rem;
             text-align: center;
         }
 
         .pricing-header h3 {
-            font-size: 1.7rem;
-            margin-bottom: 0.8rem;
-            font-weight: 700;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
 
         .price {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
         .strikethrough-price {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: white;
             text-decoration: line-through;
-            text-decoration-thickness: 4px;
+            text-decoration-thickness: 3px;
             text-decoration-color: white;
-            opacity: 0.85;
+            opacity: 0.8;
+            margin-right: 1rem;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.5rem;
         }
 
         .price-period {
             font-size: 0.95rem;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
         .pricing-body {
@@ -434,18 +405,18 @@
         }
 
         .value-stack {
-            background: #f8f9fa;
+            background: #fafafa;
             padding: 1.5rem;
-            border-radius: 8px;
+            border-radius: 10px;
             margin-bottom: 1.8rem;
             font-size: 0.9rem;
         }
 
         .value-stack strong {
-            color: #8B1538;
+            color: #FF6B35;
             display: block;
             margin-bottom: 0.8rem;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .value-total {
@@ -466,7 +437,7 @@
 
         .features-list li {
             padding: 0.7rem 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #f0f0f0;
             color: #666;
             display: flex;
             align-items: flex-start;
@@ -489,9 +460,9 @@
 
         .guarantee {
             background: #e8f5e9;
-            border-left: 5px solid #4caf50;
+            border-left: 4px solid #4caf50;
             padding: 1.2rem;
-            border-radius: 6px;
+            border-radius: 8px;
             margin: 1.5rem 0;
             font-size: 0.9rem;
             color: #1b5e20;
@@ -506,40 +477,36 @@
         .pricing-card button {
             margin-top: auto;
             padding: 1.2rem;
-            background: linear-gradient(135deg, #FF6B35, #FF9500);
+            background: #FF6B35;
             color: white;
             border: none;
-            border-radius: 6px;
-            font-weight: 700;
+            border-radius: 8px;
+            font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.3s, transform 0.3s;
+            transition: all 0.3s ease;
             font-size: 1rem;
         }
 
         .pricing-card button:hover {
-            opacity: 0.9;
+            background: #E55A24;
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
         }
 
         /* Contact Section */
         #contact {
-            padding: 5rem 2rem;
-            background: #f9f9f9;
-            max-width: 1200px;
-            margin: 0 auto;
+            background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
         }
 
         .contact-wrapper {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 3rem;
             margin-top: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-        }
-
-        .contact-container {
-            max-width: 650px;
-            margin: 0 auto;
+            border: 1px solid #f0f0f0;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .form-group {
@@ -549,7 +516,7 @@
         .form-group label {
             display: block;
             margin-bottom: 0.6rem;
-            color: #333;
+            color: #2d2d2d;
             font-weight: 600;
             font-size: 0.95rem;
         }
@@ -558,18 +525,18 @@
         .form-group textarea {
             width: 100%;
             padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
             font-family: inherit;
             font-size: 0.95rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: #FF6B35;
-            box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
+            box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.08);
         }
 
         .form-group textarea {
@@ -580,19 +547,20 @@
         .submit-btn {
             width: 100%;
             padding: 1.2rem;
-            background: linear-gradient(135deg, #FF6B35, #FF9500);
+            background: #FF6B35;
             color: white;
             border: none;
-            border-radius: 6px;
-            font-weight: 700;
+            border-radius: 8px;
+            font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
         }
 
         .submit-btn:hover {
+            background: #E55A24;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
         }
 
         /* Footer */
@@ -616,47 +584,36 @@
             }
 
             nav a {
-                font-size: 0.8rem;
+                font-size: 0.85rem;
             }
 
             .hero {
-                min-height: 85vh;
+                min-height: auto;
                 padding: 3rem 1.5rem;
-                background-attachment: scroll;
             }
 
-            .burning-bush-logo {
-                width: 70px;
-                height: 70px;
-                font-size: 3rem;
+            .logo-image {
+                width: 100px;
+                height: 100px;
+                margin: 0 auto 1.5rem;
             }
 
             .hero h1 {
-                font-size: 2.8rem;
-                margin: 1.5rem 0 1rem;
-            }
-
-            .tagline {
-                font-size: 1rem;
-            }
-
-            .description {
-                font-size: 1rem;
-                margin-bottom: 2rem;
+                font-size: 2.5rem;
             }
 
             .section-title {
                 font-size: 2.2rem;
             }
 
-            .pricing-card.featured {
-                transform: none;
-            }
-
             .services-grid,
             .pricing-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: none;
             }
         }
 
@@ -689,19 +646,13 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="logo-section">
-                <img src="dfm-logo.png" alt="Digital Faith Ministries Logo" class="logo-image">
-                <div class="brand-text">
-                    <span class="main">DIGITAL FAITH</span>
-                    <span class="sub">MINISTRIES</span>
-                </div>
-            </div>
-
+            <img src="dfm-logo.png" alt="Digital Faith Ministries Logo" class="logo-image">
+            
             <h1>Digital Faith Ministries</h1>
             
             <div class="tagline">Content Creation For Busy Ministers</div>
 
-            <p class="description">
+            <p>
                 The mission field has moved online, and the harvest has never been greater. Your message deserves to reach every soul searching in the digital space. We handle the production — from your audio, your footage, digital avatars, or created from scratch — while you stay focused on your calling.
             </p>
 
@@ -775,9 +726,11 @@
             <div class="pricing-card">
                 <div class="pricing-header">
                     <h3>Starter Package</h3>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin: 1rem 0;">
-                        <div class="strikethrough-price">£620</div>
-                        <div class="price">£99</div>
+                    <div class="price-row">
+                        <span class="strikethrough-price">£620</span>
+                        <div>
+                            <div class="price">£99</div>
+                        </div>
                     </div>
                     <div class="price-period">per month</div>
                 </div>
@@ -792,7 +745,7 @@
                         <div class="value-total">You Save 84% • Actual Value: £620</div>
                     </div>
 
-                    <h4 style="color: #8B1538; margin-bottom: 1rem; font-size: 1rem;">What's Included:</h4>
+                    <h4 style="color: #2d2d2d; margin-bottom: 1rem; font-size: 1rem;">What's Included:</h4>
                     <ul class="features-list">
                         <li>4 professional videos per month</li>
                         <li>Professional visual editing</li>
@@ -832,7 +785,7 @@
                         <div class="value-total">Total Value: ~£17,000+ monthly for £6,000/month</div>
                     </div>
 
-                    <h4 style="color: #8B1538; margin-bottom: 1rem; font-size: 1rem;">What's Included:</h4>
+                    <h4 style="color: #2d2d2d; margin-bottom: 1rem; font-size: 1rem;">What's Included:</h4>
                     <ul class="features-list">
                         <li>5 videos per day (150/month)</li>
                         <li>Advanced visual editing</li>
@@ -862,29 +815,27 @@
     <section id="contact">
         <h2 class="section-title">Get Started Today</h2>
         <div class="contact-wrapper">
-            <div class="contact-container">
-                <p style="text-align: center; margin-bottom: 2rem; color: #666; font-size: 1.05rem;">Ready to transform your message into engaging video content? Get in touch with our team. We'll discuss your goals and find the perfect package for your ministry.</p>
-                <form>
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="channel">YouTube Channel (if applicable)</label>
-                        <input type="url" id="channel" name="channel" placeholder="https://youtube.com/...">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Tell Us About Your Ministry</label>
-                        <textarea id="message" name="message" required placeholder="What's your vision? How often do you create content? What challenges are you facing?"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Enquiry</button>
-                </form>
-                <p style="text-align: center; margin-top: 1.5rem; color: #999; font-size: 0.9rem;">We'll respond within 24 hours with a personalised recommendation.</p>
-            </div>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666; font-size: 1.05rem;">Ready to transform your message into engaging video content? Get in touch with our team. We'll discuss your goals and find the perfect package for your ministry.</p>
+            <form>
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="channel">YouTube Channel (if applicable)</label>
+                    <input type="url" id="channel" name="channel" placeholder="https://youtube.com/...">
+                </div>
+                <div class="form-group">
+                    <label for="message">Tell Us About Your Ministry</label>
+                    <textarea id="message" name="message" required placeholder="What's your vision? How often do you create content? What challenges are you facing?"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Enquiry</button>
+            </form>
+            <p style="text-align: center; margin-top: 1.5rem; color: #999; font-size: 0.9rem;">We'll respond within 24 hours with a personalised recommendation.</p>
         </div>
     </section>
 
@@ -892,10 +843,10 @@
     <footer>
         <p>&copy; 2026 Digital Faith Ministries. All rights reserved.</p>
         <p>Transforming faith-based content through professional video production.</p>
-        <p style="margin-top: 1rem; opacity: 0.8;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0d64636b624d696b60207e687f7b646e687e236e6260">[email&#160;protected]</a> | +44 (0) 20 7123 4567</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">info@dfm-services.com | +44 (0) 20 7123 4567</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -910,4 +861,11 @@
         });
 
         // Form submission
-        document.querySelector('f
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your enquiry! We\'ll be in touch within 24 hours.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
