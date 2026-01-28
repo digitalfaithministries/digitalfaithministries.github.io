@@ -118,6 +118,11 @@
             height: 140px;
             margin: 0 auto 2rem;
             display: block;
+            filter: brightness(1.1) contrast(1.1) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            mix-blend-mode: screen;
         }
 
         .hero h1 {
@@ -646,7 +651,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <img src="dfm-logo.png" alt="Digital Faith Ministries Logo" class="logo-image">
+            <img src="logo.png" alt="Digital Faith Ministries Logo" class="logo-image">
             
             <h1>Digital Faith Ministries</h1>
             
@@ -843,10 +848,10 @@
     <footer>
         <p>&copy; 2026 Digital Faith Ministries. All rights reserved.</p>
         <p>Transforming faith-based content through professional video production.</p>
-        <p style="margin-top: 1rem; opacity: 0.8;">info@dfm-services.com | +44 (0) 20 7123 4567</p>
+        <p style="margin-top: 1rem; opacity: 0.8;"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a4cdcac2cbe4c0c2c989d7c1d6d2cdc7c1d78ac7cbc9">[email&#160;protected]</a> | +44 (0) 20 7123 4567</p>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -861,11 +866,4 @@
         });
 
         // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your enquiry! We\'ll be in touch within 24 hours.');
-            this.reset();
-        });
-    </script>
-</body>
-</html>
+        document.querySelector('f
