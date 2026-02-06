@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pastor's AI Assistant | Digital Faith Ministries</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --flame-orange: #E55A2B;
+            --golden-orange: #F5A623;
+            --deep-burgundy: #4A1C2A;
+            --rich-black: #1a1a1a;
+            --warm-white: #FFF9F5;
+            --pure-white: #FFFFFF;
+            --tech-blue: #2563EB;
+            --tech-purple: #7C3AED;
+            --flame-gradient: linear-gradient(135deg, var(--flame-orange) 0%, var(--golden-orange) 100%);
+            --tech-gradient: linear-gradient(135deg, var(--tech-blue) 0%, var(--tech-purple) 100%);
+            --dark-gradient: linear-gradient(180deg, var(--deep-burgundy) 0%, var(--rich-black) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            color: var(--rich-black);
+            background: var(--warm-white);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 90, 43, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 20px 10px rgba(229, 90, 43, 0); }
+        }
+
+        @keyframes typing {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo img {
+            height: 70px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .nav-logo span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--pure-white);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--pure-white);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--flame-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--golden-orange);
+        }
+
+        .nav-cta {
+            background: var(--flame-gradient);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white !important;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(229, 90, 43, 0.4);
+        }
+
+        .nav-cta::after {
+            display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--dark-gradient);
+        }
+
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(229, 90, 43, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(124, 58, 237, 0.1) 0%, transparent 30%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 120px 0 80px;
+        }
+
+        .hero-text {
+            color: var(--pure-white);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(229, 90, 43, 0.2);
+            border: 1px solid var(--flame-orange);
+            color: var(--golden-orange);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            animation: pulse 3s infinite;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            background: var(--flame-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .hero-feature-icon {
+            font-size: 1.2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--flame-gradient);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(229, 90, 43, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(229, 90, 43, 0.4);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--golden-orange);
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Chat Demo */
+        .hero-visual {
+            position: relative;
+        }
+
+        .chat-demo {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
+        }
+
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--flame-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .chat-info h4 {
+            color: var(--pure-white);
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .chat-info span {
+            color: #4ade80;
+            font-size: 0.85rem;
+        }
+
+        .chat-messages {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .chat-message {
+            max-width: 85%;
+            padding: 14px 18px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .chat-message.user {
+            background: var(--flame-gradient);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-message.assistant {
+            background: rgba(255,255,255,0.1);
+            color: var(--pure-white);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 18px;
+            align-self: flex-start;
+            width: fit-content;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--golden-orange);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Problem Section */
+        .problem {
+            padding: 100px 0;
+            background: var(--pure-white);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .problem-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 24px;
+            color: var(--rich-black);
+        }
+
+        .problem-content h2 span {
+            color: var(--flame-orange);
+        }
+
+        .problem-list {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .problem-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(229, 90, 43, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--flame-orange);
+        }
+
+        .problem-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .problem-list strong {
+            display: block;
+            color: var(--deep-burgundy);
+            margin-bottom: 4px;
+        }
+
+        .problem-image {
+            position: relative;
+        }
+
+        .problem-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: var(--dark-gradient);
+            color: var(--pure-white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: rgba(229, 90, 43, 0.2);
+            color: var(--golden-orange);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.1);
+            border-color: var(--flame-orange);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--flame-gradient);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* Phone Feature Highlight */
+        .phone-feature {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--flame-orange) 0%, var(--golden-orange) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-feature::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .phone-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .phone-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 24px;
+        }
+
+        .phone-content p {
+            font-size: 1.15rem;
+            margin-bottom: 24px;
+            opacity: 0.95;
+        }
+
+        .phone-benefits {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .phone-benefits li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 1.05rem;
+        }
+
+        .phone-benefits li::before {
+            content: '✓';
+            width: 28px;
+            height: 28px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .phone-visual {
+            text-align: center;
+        }
+
+        .phone-mockup {
+            font-size: 12rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background: var(--warm-white);
+        }
+
+        .pricing .section-label {
+            background: rgba(74, 28, 42, 0.1);
+            color: var(--deep-burgundy);
+        }
+
+        .pricing .section-header h2 {
+            color: var(--rich-black);
+        }
+
+        .pricing .section-subtitle {
+            color: var(--rich-black);
+            opacity: 0.7;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: var(--pure-white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--flame-orange);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--flame-gradient);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--rich-black);
+        }
+
+        .pricing-tagline {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .price {
+            margin-bottom: 24px;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--flame-orange);
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .price-setup {
+            display: block;
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--flame-orange);
+            font-weight: bold;
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: var(--flame-gradient);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(229, 90, 43, 0.3);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: var(--rich-black);
+            color: var(--pure-white);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-card::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            top: 40px;
+            font-size: 2rem;
+            color: var(--flame-orange);
+        }
+
+        .step-card:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--flame-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: var(--warm-white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            color: var(--rich-black);
+        }
+
+        .contact-info p {
+            margin-bottom: 16px;
+            color: #555;
+        }
+
+        .contact-form {
+            background: var(--pure-white);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--rich-black);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--flame-orange);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: var(--flame-gradient);
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(229, 90, 43, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--rich-black);
+            color: var(--pure-white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo img {
+            height: 60px;
+        }
+
+        .footer-logo span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--golden-orange);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 30px;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--golden-orange);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content,
+            .problem-grid,
+            .phone-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid,
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .step-card::after {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid,
+            .pricing-grid,
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <img src="logo-dark1.png" alt="Digital Faith Ministries">
+                <span>Digital Faith Ministries</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="index.html">Video Services</a></li>
+                <li><a href="#contact" class="nav-cta">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg-pattern"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text animate-on-scroll">
+                    <span class="hero-badge">🤖 New Service</span>
+                    <h1>Your Ministry's <span>24/7 AI Assistant</span></h1>
+                    <p class="hero-subtitle">
+                        Imagine having a tireless assistant who handles congregation calls, schedules appointments, drafts emails, creates social media content, and organises your calendar — all while you focus on what matters most: your calling.
+                    </p>
+                    <div class="hero-features">
+                        <div class="hero-feature">
+                            <span class="hero-feature-icon">📞</span>
+                            <span>24/7 Phone Line</span>
+                        </div>
+                        <div class="hero-feature">
+                            <span class="hero-feature-icon">📅</span>
+                            <span>Smart Scheduling</span>
+                        </div>
+                        <div class="hero-feature">
+                            <span class="hero-feature-icon">✉️</span>
+                            <span>Email Management</span>
+                        </div>
+                        <div class="hero-feature">
+                            <span class="hero-feature-icon">📱</span>
+                            <span>Social Media</span>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn-primary">Start Free Consultation →</a>
+                        <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+                    </div>
+                </div>
+                <div class="hero-visual animate-on-scroll">
+                    <div class="chat-demo">
+                        <div class="chat-header">
+                            <div class="chat-avatar">🔥</div>
+                            <div class="chat-info">
+                                <h4>Grace - Your Ministry Assistant</h4>
+                                <span>● Online</span>
+                            </div>
+                        </div>
+                        <div class="chat-messages">
+                            <div class="chat-message user">
+                                Mrs Thompson called about her husband's hospital visit. Can you schedule a pastoral visit?
+                            </div>
+                            <div class="chat-message assistant">
+                                Of course, Pastor. I've found an opening tomorrow at 2pm between your sermon prep and the deacons meeting. I'll send Mrs Thompson a confirmation and add it to your calendar. Shall I prepare a prayer card for Brother Thompson?
+                            </div>
+                            <div class="chat-message user">
+                                Yes please. Also draft a quick email to the congregation about prayer requests.
+                            </div>
+                            <div class="typing-indicator">
+                                <span class="typing-dot"></span>
+                                <span class="typing-dot"></span>
+                                <span class="typing-dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container">
+            <div class="problem-grid">
+                <div class="problem-content animate-on-scroll">
+                    <h2>You're Already <span>Stretched Thin</span></h2>
+                    <p>Between sermon preparation, pastoral care, counselling, administration, and family — there simply aren't enough hours in the day. Yet your congregation needs you available, and opportunities to minister are slipping through the cracks.</p>
+                    <ul class="problem-list">
+                        <li>
+                            <span class="problem-icon">📞</span>
+                            <div>
+                                <strong>Missed calls at 2am</strong>
+                                Someone needed to talk. You were asleep. They felt alone.
+                            </div>
+                        </li>
+                        <li>
+                            <span class="problem-icon">📧</span>
+                            <div>
+                                <strong>Overflowing inbox</strong>
+                                Prayer requests, event queries, pastoral concerns — buried under administrative noise.
+                            </div>
+                        </li>
+                        <li>
+                            <span class="problem-icon">📅</span>
+                            <div>
+                                <strong>Scheduling chaos</strong>
+                                Double-booked meetings, forgotten appointments, no time for preparation.
+                            </div>
+                        </li>
+                        <li>
+                            <span class="problem-icon">📱</span>
+                            <div>
+                                <strong>Silent social media</strong>
+                                Your digital presence is neglected while potential seekers scroll past.
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="problem-image animate-on-scroll">
+                    <img src="man-01.png" alt="Busy pastor">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Capabilities</span>
+                <h2>What Your AI Assistant Can Do</h2>
+                <p class="section-subtitle">A tireless helper trained to support ministry work with wisdom and sensitivity</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📞</div>
+                    <h3>24/7 Pastoral Hotline</h3>
+                    <p>Congregation members can call anytime. The AI listens with compassion, logs prayer requests, and schedules callbacks — you review everything each morning.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📅</div>
+                    <h3>Smart Scheduling</h3>
+                    <p>Automatically manages your calendar, schedules pastoral visits, avoids conflicts, and sends reminders. Never double-book again.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">✉️</div>
+                    <h3>Email Drafting</h3>
+                    <p>Drafts thoughtful responses to congregation emails, prepares newsletters, and handles routine enquiries — all in your voice and tone.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📱</div>
+                    <h3>Social Media Content</h3>
+                    <p>Creates and schedules faith-based posts, devotional snippets, and event announcements to keep your digital ministry active.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">🙏</div>
+                    <h3>Prayer Request Management</h3>
+                    <p>Collects, organises, and prioritises prayer requests. Sends follow-up messages and tracks pastoral care needs.</p>
+                </div>
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">📊</div>
+                    <h3>Weekly Summary Reports</h3>
+                    <p>Every Monday, receive a digest of calls received, appointments scheduled, emails handled, and items requiring your personal attention.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="phone-feature">
+        <div class="container">
+            <div class="phone-grid">
+                <div class="phone-content animate-on-scroll">
+                    <h2>The 24/7 Phone Line That Changes Everything</h2>
+                    <p>This is the feature that sets us apart. Your congregation gets a real phone number they can call anytime — day or night. The AI answers with warmth and understanding, providing a listening ear when you can't be there.</p>
+                    <ul class="phone-benefits">
+                        <li>Members feel heard and cared for, even at 3am</li>
+                        <li>Urgent matters are flagged for immediate attention</li>
+                        <li>Every conversation is logged and summarised</li>
+                        <li>You review calls each morning at your convenience</li>
+                        <li>Schedule callbacks directly from your summary</li>
+                    </ul>
+                    <p><strong>The result?</strong> Your congregation feels constantly supported, while you maintain healthy boundaries and avoid burnout.</p>
+                </div>
+                <div class="phone-visual animate-on-scroll">
+                    <div class="phone-mockup">📱</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Investment</span>
+                <h2>Simple, Transparent Pricing</h2>
+                <p class="section-subtitle">Choose the package that fits your ministry's needs</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card animate-on-scroll">
+                    <h3>Starter</h3>
+                    <p class="pricing-tagline">For individual ministers</p>
+                    <div class="price">
+                        <span class="price-amount">£200</span>
+                        <span class="price-period">/month</span>
+                        <span class="price-setup">+ £300 one-time setup</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>AI Assistant via Telegram/WhatsApp</li>
+                        <li>Calendar management</li>
+                        <li>Email drafting assistance</li>
+                        <li>Prayer request logging</li>
+                        <li>Weekly summary reports</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">Get Started</a>
+                </div>
+                <div class="pricing-card featured animate-on-scroll">
+                    <span class="pricing-badge">Most Popular</span>
+                    <h3>Ministry</h3>
+                    <p class="pricing-tagline">Full pastoral support system</p>
+                    <div class="price">
+                        <span class="price-amount">£350</span>
+                        <span class="price-period">/month</span>
+                        <span class="price-setup">+ £500 one-time setup</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Everything in Starter, plus:</li>
+                        <li><strong>24/7 Phone Hotline</strong></li>
+                        <li>Voice call transcription & logging</li>
+                        <li>Urgent matter flagging</li>
+                        <li>Social media content creation</li>
+                        <li>Congregation follow-up automation</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">Get Started</a>
+                </div>
+                <div class="pricing-card animate-on-scroll">
+                    <h3>Church</h3>
+                    <p class="pricing-tagline">For larger congregations</p>
+                    <div class="price">
+                        <span class="price-amount">£600</span>
+                        <span class="price-period">/month</span>
+                        <span class="price-setup">+ £1,000 one-time setup</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Everything in Ministry, plus:</li>
+                        <li>Multiple staff access</li>
+                        <li>Custom integrations</li>
+                        <li>Branded phone greeting</li>
+                        <li>Event management support</li>
+                        <li>Volunteer coordination</li>
+                        <li>Dedicated account manager</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-label">Process</span>
+                <h2>How It Works</h2>
+                <p class="section-subtitle">From consultation to launch in just two weeks</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h3>Consultation</h3>
+                    <p>We discuss your ministry's specific needs, challenges, and goals. No obligation, just conversation.</p>
+                </div>
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h3>Customisation</h3>
+                    <p>We configure your AI assistant with your church's details, your communication style, and your preferences.</p>
+                </div>
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h3>Training</h3>
+                    <p>A 1-hour session to show you how to interact with your assistant and get the most from the system.</p>
+                </div>
+                <div class="step-card animate-on-scroll">
+                    <div class="step-number">4</div>
+                    <h3>Launch</h3>
+                    <p>Your assistant goes live. We monitor the first week closely and make adjustments as needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <span class="section-label">Get Started</span>
+                    <h2>Ready to Transform Your Ministry?</h2>
+                    <p>Book a free consultation to discuss how an AI assistant can support your unique ministry needs. No pressure, no obligation — just an honest conversation about what's possible.</p>
+                    <p>We understand the sacred nature of pastoral work. Our AI assistants are designed with sensitivity, discretion, and a deep respect for faith-based ministry.</p>
+                    <p><strong>Questions?</strong> Email us directly at <a href="mailto:info@dfm-services.com" style="color: var(--flame-orange);">info@dfm-services.com</a></p>
+                </div>
+                <form class="contact-form animate-on-scroll" action="https://formspree.io/f/your-form-id" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Pastor John Smith" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="pastor@church.org" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="church">Church / Ministry Name</label>
+                        <input type="text" id="church" name="church" placeholder="Grace Community Church">
+                    </div>
+                    <div class="form-group">
+                        <label for="package">Package of Interest</label>
+                        <select id="package" name="package">
+                            <option value="">Select a package...</option>
+                            <option value="starter">Starter (£200/month)</option>
+                            <option value="ministry">Ministry (£350/month) — Most Popular</option>
+                            <option value="church">Church (£600/month)</option>
+                            <option value="unsure">Not sure yet — need advice</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Tell Us About Your Needs</label>
+                        <textarea id="message" name="message" placeholder="What challenges are you facing? What would help you most?"></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Request Free Consultation</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo-dark1.png" alt="Digital Faith Ministries">
+                    <span>Digital Faith Ministries</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Video Services</a>
+                    <a href="#features">AI Features</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Digital Faith Ministries. All rights reserved.</p>
+                <p><a href="mailto:info@dfm-services.com">info@dfm-services.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
